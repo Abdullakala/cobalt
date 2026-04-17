@@ -14,13 +14,35 @@ const getEnvBool = (key: string) => {
     return value && ['1', 'true'].includes(value.toLowerCase());
 }
 
+const getEnvNumber = (key: string, defaultValue: number = 0): number => {
+    const value = getEnv(key);
+    return value ? parseInt(value, 10) : defaultValue;
+}
+
 const variables = {
-    HOST: getEnv('HOST'),
-    PLAUSIBLE_HOST: getEnv('PLAUSIBLE_HOST'),
-    PLAUSIBLE_ENABLED: getEnv('HOST') && getEnv('PLAUSIBLE_HOST'),
+    // API Configuration
     DEFAULT_API: getEnv('DEFAULT_API'),
+    
+    // Host Configuration
+    HOST: getEnv('HOST'),
+    
+    // Analytics Configuration
+    PLAUSIBLE_HOST: getEnv('PLAUSIBLE_HOST'),
+    PLAUSIBLE_ENABLED: getEnvBool('PLAUSIBLE_ENABLED'),
+    
+    // Feature Flags
     ENABLE_WEBCODECS: getEnvBool('ENABLE_WEBCODECS'),
     ENABLE_DEPRECATED_YOUTUBE_HLS: getEnvBool('ENABLE_DEPRECATED_YOUTUBE_HLS'),
+    
+    // Build Configuration
+    SOURCEMAP: getEnvBool('SOURCEMAP'),
+    
+    // Cache Configuration
+    CACHE_MAX_AGE: getEnvNumber('CACHE_MAX_AGE', 31536000),
+    
+    // Security Configuration
+    ENABLE_HSTS: getEnvBool('ENABLE_HSTS'),
+    HSTS_MAX_AGE: getEnvNumber('HSTS_MAX_AGE', 31536000),
 }
 
 const contacts = {
