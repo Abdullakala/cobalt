@@ -84,7 +84,9 @@ const docs = {
     apiLicense: "https://github.com/imputnet/cobalt/blob/main/api/LICENSE",
 };
 
-const officialApiURL = "https://api.cobalt.tools";
+// Public community instance with high uptime (96% score)
+// Official api.cobalt.tools no longer accepts public traffic
+const officialApiURL = "https://cobalt-api.meowing.de";
 
 export { donate, officialApiURL, contacts, partners, siriShortcuts, docs };
 export default variables;
